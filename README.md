@@ -97,25 +97,24 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
 ## OUTPUT
 ### Training Loss, Validation Loss Vs Iteration Plot
 
+<img width="888" height="845" alt="image" src="https://github.com/user-attachments/assets/b387764c-1e49-4313-baaf-6915c9df54e9" />
+
 
 ### Confusion Matrix
-Include confusion matrix here
-</br>
-</br>
-</br>
+
+<img width="812" height="729" alt="image" src="https://github.com/user-attachments/assets/aedccec2-78aa-4ff6-b8c4-04d83fcd21bf" />
+
 
 ### Classification Report
-Include Classification Report here
-</br>
-</br>
-</br>
+
+<img width="611" height="235" alt="image" src="https://github.com/user-attachments/assets/95a9b66c-abd7-45cd-8fff-e1eff2dc599a" />
 
 ### New Sample Prediction
-</br>
-</br>
-</br>
+
+<img width="422" height="488" alt="image" src="https://github.com/user-attachments/assets/ca055168-f1ca-4222-b2c6-cadf5c5c3215" />
+
 
 ## RESULT
-</br>
-</br>
-</br>
+
+The VGG-19 model was successfully trained and optimized to classify defected and non-defected capacitors.
+
