@@ -31,7 +31,6 @@ Include your code here
 # Load Pretrained Model and Modify for Transfer Learning
 
 model = models.vgg19(weights = models.VGG19_Weights.DEFAULT)
-
 for param in model.parameters():
   param.requires_grad = False
 
@@ -47,6 +46,7 @@ criterion = nn.BCELoss()
 optimizer = optim.Adam(model.parameters(),lr=0.001)
 
 # Train the model
+## Step 3: Train the Model
 def train_model(model, train_loader,test_loader,num_epochs=10):
     train_losses = []
     val_losses = []
@@ -57,19 +57,23 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
             images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = model(images)
+            outputs = torch.sigmoid(outputs)
+            labels = labels.float().unsqueeze(1)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
         train_losses.append(running_loss / len(train_loader))
 
-        # Compute validation loss
+    # Compute validation loss
         model.eval()
         val_loss = 0.0
         with torch.no_grad():
             for images, labels in test_loader:
                 images, labels = images.to(device), labels.to(device)
                 outputs = model(images)
+                outputs = torch.sigmoid(outputs)
+                labels = labels.float().unsqueeze(1)
                 loss = criterion(outputs, labels)
                 val_loss += loss.item()
 
@@ -79,8 +83,8 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
         print(f'Epoch [{epoch+1}/{num_epochs}], Train Loss: {train_losses[-1]:.4f}, Validation Loss: {val_losses[-1]:.4f}')
 
     # Plot training and validation loss
-    print("Name:LATHIKA SREE R")
-    print("Register Number:212224040169")
+    print("Name: LATHIKA SREE R")
+    print("Register Number: 212224040169")
     plt.figure(figsize=(8, 6))
     plt.plot(range(1, num_epochs + 1), train_losses, label='Train Loss', marker='o')
     plt.plot(range(1, num_epochs + 1), val_losses, label='Validation Loss', marker='s')
@@ -97,21 +101,22 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
 ## OUTPUT
 ### Training Loss, Validation Loss Vs Iteration Plot
 
-<img width="888" height="845" alt="image" src="https://github.com/user-attachments/assets/b387764c-1e49-4313-baaf-6915c9df54e9" />
+<img width="891" height="971" alt="image" src="https://github.com/user-attachments/assets/f3cc7470-02b0-4a1f-bbef-2cbb8790ef19" />
 
 
 ### Confusion Matrix
 
-<img width="812" height="729" alt="image" src="https://github.com/user-attachments/assets/aedccec2-78aa-4ff6-b8c4-04d83fcd21bf" />
+<img width="802" height="753" alt="image" src="https://github.com/user-attachments/assets/af31cc2b-bb63-4f97-86fe-99c7a56c5c66" />
 
 
 ### Classification Report
 
-<img width="611" height="235" alt="image" src="https://github.com/user-attachments/assets/95a9b66c-abd7-45cd-8fff-e1eff2dc599a" />
+<img width="532" height="255" alt="image" src="https://github.com/user-attachments/assets/f44375f8-8cbd-4d87-b7f3-f4ebc64d6250" />
 
 ### New Sample Prediction
 
-<img width="422" height="488" alt="image" src="https://github.com/user-attachments/assets/ca055168-f1ca-4222-b2c6-cadf5c5c3215" />
+
+<img width="421" height="538" alt="image" src="https://github.com/user-attachments/assets/f1f363d4-63f1-410e-a4fc-67d3f3457cd1" />
 
 
 ## RESULT
